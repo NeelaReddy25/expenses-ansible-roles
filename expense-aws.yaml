@@ -27,7 +27,7 @@
       state: present
       zone: "{{ zone }}"
       private_zone: yes
-      record: "{{ item }}.{{ zone }}"
+      record: "{{ Name }}.{{ zone }}"
       type: A
       value: "{{ instances.private_ip_address }}"
       overwrite: true
