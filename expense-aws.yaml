@@ -9,7 +9,7 @@
   tasks:
   - name: create ec2 instances
     amazon.aws.ec2_instance:
-    instance_type: t2.micro
+      instance_type: t2.micro
       name: "{{ item }}"
       security_group: stay-true #replace with your aws values
       image_id: ami-09c813fb71547fc4f #replace with your aws values
