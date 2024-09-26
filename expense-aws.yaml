@@ -28,7 +28,22 @@
       zone: "{{ zone }}"
       record: "{{ item }}.{{ zone }}"
       type: A
-      value: "{{ item.instances.private_ip_address }}"
+      # value: "{{ item.instances.private_ip_address }}"
       overwrite: true
       ttl: 1
-    loop: "{{ ec2_instances_info.results }}"
+      with_items: "{{ ec2_instances_info.instances }}"
+      loop:
+      - "{{ item.private_ip_address }}"
+      when: item.private_ip_address is defined
+      
+#   - name: Gather EC2 instance info
+#     ec2_instance_info:
+#       region: "us-east-1"
+#       instance_ids: "{{ instance_ids }}"
+#     register: ec2_instances_info
+
+# - name: Create Route53 records
+#   with_items: "{{ ec2_instances_info.instances }}"
+#   loop:
+#     - "{{ item.private_ip_address }}"
+#   when: item.private_ip_address is defined
