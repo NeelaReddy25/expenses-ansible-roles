@@ -2,6 +2,7 @@
   hosts: localhost
   vars:
     zone: neelareddy.store
+    hosted_zone_id: Z03951783QAH4RNZ7CEK8
     instances:
     - db
     - backend
@@ -26,10 +27,10 @@
     amazon.aws.route53:
       state: present
       zone: "{{ zone }}"
-      private_zone: yes
-      record: "{{ Name }}.{{ zone }}"
+      zone_id: "{{ hosted_zone_id }}"
+      record: "{{ item }}.{{ zone }}"
       type: A
-      value: "{{ instances.private_ip_address }}"
+      value: "{{ item.instances.private_ip_address }}"
       overwrite: true
       ttl: 1
       with_items: "{{ ec2_instances_info.results }}"
