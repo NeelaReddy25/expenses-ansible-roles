@@ -33,7 +33,7 @@
       ttl: 1
       with_items: "{{ ec2_instances_info.instances }}"
       loop:
-      - "{{ iitem.instances.private_ip_address }}"
+      - "{{ item.instances.private_ip_address }}"
       when: item.instances.private_ip_address is defined
 
 #   - name: Gather EC2 instance info
