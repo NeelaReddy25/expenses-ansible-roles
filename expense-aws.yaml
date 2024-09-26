@@ -29,7 +29,7 @@
       private_zone: yes
       record: "{{ item }}.{{ zone }}"
       type: A
-      value: "{{ item.instances.private_ip_address }}"
+      value: "{{ instances.private_ip_address }}"
       overwrite: true
       ttl: 1
       with_items: "{{ ec2_instances_info.results }}"
@@ -48,3 +48,14 @@
 #   loop:
 #     - "{{ item.private_ip_address }}"
 #   when: item.private_ip_address is defined
+
+
+# state: get
+#         private_zone: yes
+#         zone: gritfy.infra
+#         record: server01.ffx.infra
+#         type: A
+#       register: record
+
+#     - name: display the record
+#       debug: var=record
