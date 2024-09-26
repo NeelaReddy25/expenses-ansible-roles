@@ -30,5 +30,5 @@
       type: A
       value: "{{ item.instances.private_ip_address }}"
       overwrite: true
-      ttl:1
+      ttl: 1
     loop: "{{ ec2_instances_info.results }}"
