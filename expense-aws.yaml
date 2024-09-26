@@ -30,7 +30,7 @@
       zone_id: "{{ hosted_zone_id }}"
       record: "{{ item }}.{{ zone }}"
       type: A
-      value: "{{ item.instances.private_ip_address }}"
+      value: "{{ item.instances_id.private_ip_address }}"
       overwrite: true
       ttl: 1
       with_items: "{{ ec2_instances_info.results }}"
